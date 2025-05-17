@@ -1,4 +1,4 @@
-.PHONY: install tests install-dev-tools composer
+.PHONY: install tests install-dev-tools composer coverage phpunit-migrate
 
 COMPOSER_HOME ?= $(HOME)/.config/composer
 COMPOSER_CACHE_DIR ?= $(HOME)/.cache/composer
@@ -20,17 +20,24 @@ install:
 	$(MAKE) composer install
 
 tests:
-	go test -covermode=set ./... -coverprofile=coverage.txt && go tool cover -func=coverage.txt
-coverage:
-	podman run --rm -it \
-    		--env COMPOSER_HOME=$(COMPOSER_HOME) \
-    		--env COMPOSER_CACHE_DIR=$(COMPOSER_CACHE_DIR) \
+		podman run --rm -it \
     		--env XDEBUG_MODE=coverage \
-    		--volume $(COMPOSER_HOME):$(COMPOSER_HOME):Z \
-    		--volume $(COMPOSER_CACHE_DIR):$(COMPOSER_CACHE_DIR):Z \
     		--volume $(CURDIR):/app:Z \
     		--workdir /app \
-    		composer vendor/bin/phpunit --coverage-text=coverage.txt
+    		gouef/phpunit-coverage vendor/bin/phpunit --coverage-filter=src --coverage-text=coverage.txt
+coverage:
+		rm -rf .phpunit.result.cache .phpunit.cache coverage && podman run --rm -it \
+    		--env XDEBUG_MODE=coverage \
+    		--volume $(CURDIR):/app:Z \
+    		--workdir /app \
+    		gouef/phpunit-coverage vendor/bin/phpunit --coverage-filter=src --coverage-text=coverage.txt --coverage-html=coverage --display-deprecations --display-phpunit-deprecation --do-not-cache-result
+
+phpunit-migrate:
+		podman run --rm -it \
+    		--env XDEBUG_MODE=coverage \
+    		--volume $(CURDIR):/app:Z \
+    		--workdir /app \
+    		gouef/phpunit-coverage vendor/bin/phpunit --migrate-configuration
 
 %:
 	@:

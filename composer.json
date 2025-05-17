@@ -1,8 +1,8 @@
 {
-    "name": "phpuef/github-lib-template",
+    "name": "phpuef/currency",
     "type": "template",
-    "require": {
-        "phpunit/phpunit": "12.2.x-dev"
+    "require-dev": {
+        "phpunit/phpunit": "^12.1"
     },
     "license": "MIT",
     "authors": [
@@ -10,5 +10,20 @@
             "name": "Jan Galek"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Phpuef\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Phpuef\\": "tests"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.4"
+        }
+    }
 }
