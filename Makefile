@@ -30,7 +30,7 @@ coverage:
     		--env XDEBUG_MODE=coverage \
     		--volume $(CURDIR):/app:Z \
     		--workdir /app \
-    		gouef/phpunit-coverage vendor/bin/phpunit --coverage-filter=src --coverage-text=coverage.txt --coverage-html=coverage --display-deprecations --display-phpunit-deprecation --do-not-cache-result
+    		gouef/phpunit-coverage vendor/bin/phpunit --coverage-filter=src --coverage-text=coverage.txt --coverage-clover=coverage.xml --coverage-html=coverage --display-deprecations --display-phpunit-deprecation --do-not-cache-result
 
 phpunit-migrate:
 		podman run --rm -it \
