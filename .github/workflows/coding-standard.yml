@@ -1,20 +1,23 @@
-name: coding-standard.yml
+name: coding-standard
 on:
   push:
 jobs:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+  coding-standards:
+    runs-on: ubuntu-latest
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-  - name: Set up PHP
-    uses: shivammathur/setup-php@v2
-    with:
-      php-version: '8.4'
-      extensions: mbstring
-      tools: composer, phpcs
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.4'
+        extensions: mbstring
+        tools: composer, phpcs
 
-  - name: Install dependencies
-    run: composer install --no-interaction --no-progress --prefer-dist
+    - name: Install dependencies
+      run: composer install --no-interaction --no-progress --prefer-dist
 
-  - name: Run PHPCS
-    run: vendor/bin/phpcs --standard=ruleset.xml src tests
+    - name: Run PHPCS
+      run: vendor/bin/phpcs --standard=ruleset.xml src tests
 
