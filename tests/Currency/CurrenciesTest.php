@@ -1,15 +1,15 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tests\Phpuef\Currency;
 
 use Phpuef\Currency\Code;
 use Phpuef\Currency\Currencies;
 use Phpuef\Currency\Symbol;
-use Phpuef\Currency\UniqueSymbol;
 use PHPUnit\Framework\TestCase;
 
 class CurrenciesTest extends TestCase
 {
+
     public function testList(): void
     {
         $list = Currencies::List();
@@ -28,14 +28,14 @@ class CurrenciesTest extends TestCase
     public function testFindCurrencyException(): void
     {
         self::expectException(\InvalidArgumentException::class);
-        self::expectExceptionMessage("currency with code Test not found");
-        Currencies::FindCurrency("Test");
+        self::expectExceptionMessage('currency with code Test not found');
+        Currencies::FindCurrency('Test');
     }
 
     public function testValidateCurrency(): void
     {
         self::assertTrue(Currencies::ValidateCurrency(Code::CZK->value));
-        self::assertFalse(Currencies::ValidateCurrency("Test"));
+        self::assertFalse(Currencies::ValidateCurrency('Test'));
     }
 
     public function testFindCurrenciesBySymbol(): void
@@ -52,4 +52,5 @@ class CurrenciesTest extends TestCase
 
         self::assertEquals($expected, Currencies::FindUniqueSymbolCurrency(Symbol::CZK));
     }
+
 }

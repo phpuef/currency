@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tests\Phpuef\Currency;
 
@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class SymbolTest extends TestCase
 {
+
     public function testCases(): void
     {
         $cases = Symbol::cases();
@@ -26,7 +27,7 @@ class SymbolTest extends TestCase
     public function testExists(): void
     {
         self::assertTrue(Symbol::exists(Code::CZK->name));
-        self::assertFalse(Symbol::exists("NONE"));
+        self::assertFalse(Symbol::exists('NONE'));
     }
 
     public function testUniqueGetCurrency(): void
@@ -39,10 +40,10 @@ class SymbolTest extends TestCase
 
     public function testUniqueFindCurrencyException(): void
     {
-
-        self::expectExceptionMessage("currency with unique symbol TEST not found");
+        self::expectExceptionMessage('currency with unique symbol TEST not found');
         self::expectException(\InvalidArgumentException::class);
 
-        UniqueSymbol::FindCurrency("TEST");
+        UniqueSymbol::FindCurrency('TEST');
     }
+
 }

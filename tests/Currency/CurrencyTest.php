@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tests\Phpuef\Currency;
 
@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class CurrencyTest extends TestCase
 {
+
     public function testHasUniqueSymbol(): void
     {
         $currency = Currency::create(Code::CZK, Name::CZK, Symbol::CZK, 2);

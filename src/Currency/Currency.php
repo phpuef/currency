@@ -1,33 +1,22 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Phpuef\Currency;
 
 final class Currency
 {
-    public function __construct(
-        public Code $code {
-            get {
-                return $this->code;
-            }
-        },
-        public Name $name {
-            get {
-                return $this->name;
-            }
-        },
-        public string $symbol {
-            get {
-                return $this->symbol;
-            }
-        },
-        public int $minorUnits {
-            get {
-                return $this->minorUnits;
-            }
-        }
-    ) {}
 
-    public static function create(Code $code, Name $name, string $symbol, int $minorUnits) : Currency {
+    public function __construct(
+        public Code $code,
+        public Name $name,
+        public string $symbol,
+        public int $minorUnits
+    )
+    {
+        // Construct
+    }
+
+    public static function create(Code $code, Name $name, string $symbol, int $minorUnits): Currency
+    {
         return new Currency($code, $name, $symbol, $minorUnits);
     }
 
