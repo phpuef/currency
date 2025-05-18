@@ -10,46 +10,46 @@ use PHPUnit\Framework\TestCase;
 
 class CurrenciesTest extends TestCase
 {
-    public function testList()
+    public function testList(): void
     {
         $list = Currencies::List();
 
-        $this->assertCount(160, $list);
+        self::assertCount(160, $list);
     }
 
-    public function testFindCurrency()
+    public function testFindCurrency(): void
     {
         $list = Currencies::List();
         $valid = Currencies::FindCurrency(Code::CZK->value);
 
-        $this->assertEquals($list[Code::CZK->name], $valid);
+        self::assertEquals($list[Code::CZK->name], $valid);
     }
 
-    public function testFindCurrencyException()
+    public function testFindCurrencyException(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("currency with code Test not found");
+        self::expectException(\InvalidArgumentException::class);
+        self::expectExceptionMessage("currency with code Test not found");
         Currencies::FindCurrency("Test");
     }
 
-    public function testValidateCurrency()
+    public function testValidateCurrency(): void
     {
-        $this->assertTrue(Currencies::ValidateCurrency(Code::CZK->value));
-        $this->assertFalse(Currencies::ValidateCurrency("Test"));
+        self::assertTrue(Currencies::ValidateCurrency(Code::CZK->value));
+        self::assertFalse(Currencies::ValidateCurrency("Test"));
     }
 
-    public function testFindCurrenciesBySymbol()
+    public function testFindCurrenciesBySymbol(): void
     {
         $valid = Currencies::FindCurrency(Code::CZK->value);
         $expected = [Code::CZK->name => $valid];
 
-        $this->assertEquals($expected, Currencies::FindCurrenciesBySymbol(Symbol::CZK));
+        self::assertEquals($expected, Currencies::FindCurrenciesBySymbol(Symbol::CZK));
     }
 
-    public function testFindUniqueSymbolCurrency()
+    public function testFindUniqueSymbolCurrency(): void
     {
         $expected = Currencies::FindCurrency(Code::CZK->value);
 
-        $this->assertEquals($expected, Currencies::FindUniqueSymbolCurrency(Symbol::CZK));
+        self::assertEquals($expected, Currencies::FindUniqueSymbolCurrency(Symbol::CZK));
     }
 }

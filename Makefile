@@ -1,4 +1,4 @@
-.PHONY: install tests install-dev-tools composer coverage phpunit-migrate
+.PHONY: install tests install-dev-tools composer coverage phpunit-migrate phpstan
 
 COMPOSER_HOME ?= $(HOME)/.config/composer
 COMPOSER_CACHE_DIR ?= $(HOME)/.cache/composer
@@ -39,5 +39,11 @@ phpunit-migrate:
     		--workdir /app \
     		gouef/phpunit-coverage vendor/bin/phpunit --migrate-configuration
 
+phpstan:
+		podman run --rm -it \
+    		--env XDEBUG_MODE=coverage \
+    		--volume $(CURDIR):/app:Z \
+    		--workdir /app \
+    		gouef/phpunit-coverage vendor/bin/phpstan analyse
 %:
 	@:

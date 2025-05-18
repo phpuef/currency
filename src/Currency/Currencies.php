@@ -15,7 +15,7 @@ final class Currencies
      */
     public static function List(): array
     {
-        if (self::$currencies == null) {
+        if (self::$currencies === null) {
             self::$currencies = [
                 Code::AED->name => new Currency(Code::AED, Name::AED, Symbol::AED, 2),
                 Code::AFN->name => new Currency(Code::AFN, Name::AFN, Symbol::AFN, 2),

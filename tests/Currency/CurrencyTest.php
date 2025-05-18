@@ -10,14 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 class CurrencyTest extends TestCase
 {
-    public function testHasUniqueSymbol()
+    public function testHasUniqueSymbol(): void
     {
         $currency = Currency::create(Code::CZK, Name::CZK, Symbol::CZK, 2);
 
-        $this->assertTrue($currency->HasUniqueSymbol());
+        self::assertTrue($currency->HasUniqueSymbol());
 
         $invalidCurrency = Currency::create(Code::USD, Name::USD, Symbol::USD, 2);
-        $this->assertFalse($invalidCurrency->HasUniqueSymbol());
+        self::assertFalse($invalidCurrency->HasUniqueSymbol());
     }
 
 }

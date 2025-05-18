@@ -10,38 +10,38 @@ use PHPUnit\Framework\TestCase;
 
 class SymbolTest extends TestCase
 {
-    public function testCases()
+    public function testCases(): void
     {
         $cases = Symbol::cases();
 
-        $this->assertCount(160, $cases);
+        self::assertCount(160, $cases);
     }
 
-    public function testFromOk()
+    public function testFromOk(): void
     {
         $symbol = Symbol::from(Code::CZK->name);
-        $this->assertEquals(Symbol::CZK, $symbol);
+        self::assertSame(Symbol::CZK, $symbol);
     }
 
-    public function testExists()
+    public function testExists(): void
     {
-        $this->assertTrue(Symbol::exists(Code::CZK->name));
-        $this->assertFalse(Symbol::exists("NONE"));
+        self::assertTrue(Symbol::exists(Code::CZK->name));
+        self::assertFalse(Symbol::exists("NONE"));
     }
 
-    public function testUniqueGetCurrency()
+    public function testUniqueGetCurrency(): void
     {
         $list = Currencies::List();
         $expected = $list[Code::CZK->name];
 
-        $this->assertEquals($expected, UniqueSymbol::CZK->GetCurrency());
+        self::assertEquals($expected, UniqueSymbol::CZK->GetCurrency());
     }
 
-    public function testUniqueFindCurrencyException()
+    public function testUniqueFindCurrencyException(): void
     {
 
-        $this->expectExceptionMessage("currency with unique symbol TEST not found");
-        $this->expectException(\InvalidArgumentException::class);
+        self::expectExceptionMessage("currency with unique symbol TEST not found");
+        self::expectException(\InvalidArgumentException::class);
 
         UniqueSymbol::FindCurrency("TEST");
     }

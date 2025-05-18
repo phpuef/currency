@@ -165,6 +165,7 @@ final class Symbol
     public const string ZMW = "K";
     public const string ZWL = "Z$";
 
+    /** @var array<string, string>|null */
     private static ?array $list = null;
 
     /**
@@ -183,9 +184,12 @@ final class Symbol
         return array_key_exists($code, self::cases());
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function cases(): array
     {
-        if (self::$list == null) {
+        if (self::$list === null) {
             $ref = new \ReflectionClass(self::class);
             self::$list = $ref->getConstants();
         }
