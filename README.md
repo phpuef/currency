@@ -5,7 +5,7 @@ The `currency` package provides functionality to manage and validate different c
 
 [![Static Badge](https://img.shields.io/badge/Github-phpuef%2Fgithub--lib--template-blue?style=for-the-badge&logo=github&link=github.com%2Fphpuef%2Fcurrency)](https://github.com/phpuef/currency)
 
-![Packagist Downloads](https://img.shields.io/packagist/dt/phpuef/currency)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/phpuef/currency)](https://packagist.org/packages/phpuef/currency)
 [![GitHub stars](https://img.shields.io/github/stars/phpuef/currency?style=social)](https://github.com/phpuef/currency/stargazers)
 ![PHPStan](https://github.com/phpuef/currency/actions/workflows/phpstan.yml/badge.svg)
 [![Tests](https://github.com/phpuef/currency/actions/workflows/tests.yml/badge.svg)](https://github.com/phpuef/currency/actions/workflows/tests.yml)
