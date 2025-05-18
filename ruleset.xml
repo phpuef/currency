@@ -111,6 +111,8 @@
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpenBrace"/>
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
         <exclude name="PSR1.Methods.CamelCapsMethodName"/>
+        <exclude name="SlevomatCodingStandard.Classes.PropertySpacing"/>
+        <exclude name="Generic.NamingConventions.CamelCapsFunctionName"/>
     </rule>
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
         <type>error</type>
@@ -532,8 +534,5 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Commenting.DeprecatedAnnotationDeclaration"/>
     <rule ref="SlevomatCodingStandard.Classes.SuperfluousErrorNaming"/>
-    <exclude name="SlevomatCodingStandard.Classes.PropertySpacing"/>
-    <exclude name="Generic.NamingConventions.CamelCapsFunctionName"/>
-    <exclude name="PSR1.Methods.CamelCapsMethodName"/>
 
 </ruleset>
