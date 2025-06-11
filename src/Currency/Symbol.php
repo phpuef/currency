@@ -191,7 +191,11 @@ final class Symbol
     {
         if (self::$list === null) {
             $ref = new \ReflectionClass(self::class);
-            self::$list = $ref->getConstants();
+
+            /** @var array<string, string> $list */
+            $list = $ref->getConstants();
+            self::$list = $list;
+            unset($list);
         }
 
         return self::$list;
